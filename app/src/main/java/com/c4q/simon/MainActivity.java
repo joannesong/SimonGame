@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button[] button;
     Button[] simon;
     AlphaAnimation buttonAnimation;
+    List<Button[]> x;
 
 
     @Override
@@ -31,18 +32,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         button = new Button[4];
         simon = new Button[4];
-        ////List<Button> x = new ArrayList<>();
+         x = new ArrayList<>();
 
         button[0] = findViewById(R.id.red);
-        button[0].setOnClickListener(this);
         button[1] = findViewById(R.id.blue);
-        button[1].setOnClickListener(this);
         button[2] = findViewById(R.id.green);
-        button[2].setOnClickListener(this);
         button[3] = findViewById(R.id.yellow);
+
+
+        button[0].setOnClickListener(this);
+        button[1].setOnClickListener(this);
+        button[2].setOnClickListener(this);
         button[3].setOnClickListener(this);
-        Collections.shuffle(Arrays.asList(button));
+
+        shuffle(button);
         makeButtonFalse(button);
+        x.add(button);
 
 
     }
@@ -53,14 +58,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (view.getId()) {
             case R.id.red:
-                for (int i = 0; i < button.length; i++) {
-                    if (button[i].getId() == R.id.red) {
-                        button[i].startAnimation(buttonAnimation);
-                        simon[i] = findViewById(view.getId());
+                //for (int i = 0; i <x.size() ; i++) {
+                         ///   Button[] k=x.get(i);
+
+                    for (int j = 0;  j< button.length; j++) {
+                        if (button[j].getId() == R.id.red) {
+                            button[j].startAnimation(buttonAnimation);
+                            simon[j] = findViewById(view.getId());
+                        }
                     }
-                }
-
-
                 break;
             case R.id.blue:
                 for (int i = 0; i < button.length; i++) {
@@ -70,8 +76,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                 }
-
-
                 break;
             case R.id.green:
                 for (int i = 0; i < button.length; i++) {
@@ -81,8 +85,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                 }
-
-
                 break;
             case R.id.yellow:
                 for (int i = 0; i < button.length; i++) {
@@ -99,22 +101,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void play(View view) throws InterruptedException {
         makeButtonTrue(button);
-        for (int i = 0; i < button.length; i++) {
-            final Handler handler = new Handler();
-            final int finalI = i;
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
+        ///Button[] buttons2= new Button[];
+        for (int j = 0; j <x.size() ; j++) {
+                    final Button[] buttonss= x.get(j);
 
-                    button[finalI].startAnimation(buttonAnimation);
-                    button[finalI].setText(String.valueOf(finalI));
+            for (int i = 0; i < buttonss.length; i++) {
+                final Handler handler = new Handler();
+                final int finalI = i;
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        buttonss[finalI].startAnimation(buttonAnimation);
+                        buttonss[finalI].setText(String.valueOf(finalI));
 
 
-                }
-            }, 1000 * i * 2);
-            Collections.shuffle(Arrays.asList(button));
+                    }
+                }, 1000 * i * 2);
 
+
+            }
+            shuffle(buttonss);
+            //x.add(button);
         }
+
 
 
     }
@@ -130,8 +140,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void check(View view) {
         checks(button, simon);
-       // Arrays.fill(simon, null);
-
     }
 
     private void createButtonAnimation() {
@@ -142,16 +150,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void makeButtonFalse(Button[] button){
         for (int i = 0; i <button.length ; i++) {
             button[i].setEnabled(false);
-
         }
     }
 
     public void makeButtonTrue(Button[] button){
         for (int i = 0; i <button.length ; i++) {
             button[i].setEnabled(true);
-
         }
     }
+    public void shuffle(Button[] b){
+        Collections.shuffle(Arrays.asList(b));
+        ///x.add(b);*****
+    }
+
 
 }
 
