@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.red:
                 red.startAnimation(buttonAnimation);
                 userClicks.add(1);
-                Toast.makeText(getApplicationContext(),"red here!", Toast.LENGTH_LONG).show();
                 beep.start();
                 break;
             case R.id.yellow:

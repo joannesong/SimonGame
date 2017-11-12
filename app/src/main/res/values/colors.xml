@@ -11,5 +11,6 @@
     <color name="lightyellow">#ffffe0</color>
     <color name="lightred">#ff8d8d</color>
     <color name="lightgreen">#2fff00</color>
+    <color name="white">#ffffff</color>
 
 </resources>
