@@ -1,5 +1,6 @@
 package nyc.c4q.simonjoanne;
 
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final Random random = new Random();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,25 +41,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         green = (Button) findViewById(R.id.green);
         play = (Button) findViewById(R.id.play);
 
+
     }
 
     @Override
     public void onClick(View view) {
+        MediaPlayer beep = MediaPlayer.create(MainActivity.this,R.raw.beep);
+        MediaPlayer beep2 = MediaPlayer.create(MainActivity.this, R.raw.beep2);
+        MediaPlayer beep3 = MediaPlayer.create(MainActivity.this, R.raw.beep3);
+        MediaPlayer beep4 = MediaPlayer.create(MainActivity.this, R.raw.beep4);
+
         switch (view.getId()) {
             case R.id.red:
                 red.startAnimation(buttonAnimation);
                 userClicks.add(1);
+                Toast.makeText(getApplicationContext(),"red here!", Toast.LENGTH_LONG).show();
+                beep.start();
+                break;
             case R.id.yellow:
                 yellow.startAnimation(buttonAnimation);
                 userClicks.add(2);
+                beep2.start();
                 break;
             case R.id.blue:
                 blue.startAnimation(buttonAnimation);
                 userClicks.add(3);
+                beep3.start();
                 break;
             case R.id.green:
                 green.startAnimation(buttonAnimation);
                 userClicks.add(4);
+                beep4.start();
                 break;
         }
     }
@@ -70,6 +84,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void replay() {
         int re = random.nextInt(4);
         simonSays.add(re);
+        MediaPlayer beep= MediaPlayer.create(MainActivity.this,R.raw.beep);
+        MediaPlayer beep2 = MediaPlayer.create(MainActivity.this, R.raw.beep2);
+        MediaPlayer beep3 = MediaPlayer.create(MainActivity.this, R.raw.beep3);
+        MediaPlayer beep4 = MediaPlayer.create(MainActivity.this, R.raw.beep4);
 
         for (int i : simonSays) {
             switch (i) {
@@ -80,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             red.startAnimation(buttonAnimation);
                         }
                     }, 1000 * ++counter);
+                    beep.start();
                     break;
                 case 1:
                     new Handler().postDelayed(new Runnable() {
@@ -88,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             yellow.startAnimation(buttonAnimation);
                         }
                     }, 1000 * ++counter);
+                    beep2.start();
                     break;
                 case 2:
                     new Handler().postDelayed(new Runnable() {
@@ -96,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             blue.startAnimation(buttonAnimation);
                         }
                     }, 1000 * ++counter);
+                    beep3.start();
                     break;
 
                 case 3:
@@ -105,28 +126,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             green.startAnimation(buttonAnimation);
                         }
                     }, 1000 * ++counter);
+                    beep4.start();
                     break;
             }
         }
     }
 
     public void addToUser(View view) {
+        MediaPlayer beep= MediaPlayer.create(MainActivity.this,R.raw.beep);
+        MediaPlayer beep2 = MediaPlayer.create(MainActivity.this, R.raw.beep2);
+        MediaPlayer beep3 = MediaPlayer.create(MainActivity.this, R.raw.beep3);
+        MediaPlayer beep4 = MediaPlayer.create(MainActivity.this, R.raw.beep4);
         switch (view.getId()) {
             case R.id.red:
                 red.startAnimation(buttonAnimation);
                 userClicks.add(0);
+                beep.start();
                 break;
             case R.id.yellow:
                 yellow.startAnimation(buttonAnimation);
                 userClicks.add(1);
+                beep2.start();
                 break;
             case R.id.blue:
                 yellow.startAnimation(buttonAnimation);
                 userClicks.add(2);
+                beep3.start();
                 break;
             case R.id.green:
                 green.startAnimation(buttonAnimation);
                 userClicks.add(3);
+                beep4.start();
                 break;
         }
 

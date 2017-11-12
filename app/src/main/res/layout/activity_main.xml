@@ -18,14 +18,14 @@
             android:layout_height="200dp"
             android:layout_width="150dp"
             android:layout_weight="1"
-            android:onClick="addToUser"
+            android:onClick="onClick"
             android:background="@color/red"/>
         <Button
             android:id="@+id/yellow"
 
             android:layout_width="150dp"
             android:layout_height="200dp"
-            android:onClick="addToUser"
+            android:onClick="onClick"
             android:layout_weight="1"
             android:background="@color/yellow"/>
 
@@ -41,14 +41,14 @@
             android:layout_height="200dp"
             android:layout_width="150dp"
             android:layout_weight="1"
-            android:onClick="addToUser"
+            android:onClick="onClick"
             android:background="@color/blue"/>
         <Button
             android:id="@+id/green"
             android:layout_width="150dp"
             android:layout_height="200dp"
             android:layout_weight="1"
-            android:onClick="addToUser"
+            android:onClick="onClick"
             android:background="@color/green"/>
 
     </LinearLayout>
